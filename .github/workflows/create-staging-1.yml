@@ -10,7 +10,7 @@ jobs:
     name: Create Staging-1 Branch
     runs-on: ubuntu-latest
     
-    if: github.event.base_ref == 'refs/heads/staging-1'
+    if: github.event.ref == 'refs/heads/main' && github.event.base_ref == 'refs/heads/staging-1'
     
     steps:
       - name: Checkout main branch
