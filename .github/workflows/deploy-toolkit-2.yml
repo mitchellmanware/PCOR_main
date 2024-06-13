@@ -1,0 +1,55 @@
+name: Deploy GitHub Pages for staging and for main
+
+on:
+  push:
+    branches:
+      - main
+      - staging-public
+  pull_request:
+    branches:
+      - main
+      - staging-public
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build site
+        run: npm run build
+
+      - name: Define URL for main branch
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo 'mitchellmanware.github.io/bookdown-main' > ./dist/CNAME
+
+      - name: Define URL for staging branch
+        if: github.ref == 'refs/heads/staging-public'
+        run: |
+          echo 'mitchellmanware.github.io/bookdown-staging' > ./dist/CNAME
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./dist
+          cname: ''  # Ensure this is empty to use the CNAME file
+          destination_dir: ${{ github.ref_name }}
