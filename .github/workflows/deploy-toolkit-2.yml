@@ -1,55 +1,91 @@
-name: Deploy GitHub Pages for staging and for main
+name: Deploy Toolkit 2
 
 on:
   push:
     branches:
       - main
-      - staging-internal
+      - staging
   pull_request:
     branches:
       - main
-      - staging-internal
+      - staging
+  release:
+    types: [published]
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  deploy_main:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Set up R and Pandoc
+        uses: r-lib/actions/setup-pandoc@v2
         with:
-          node-version: '14'
+          pandoc-version: 'latest'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
 
-      - name: Build site
-        run: npm run build
-
-      - name: Define URL for main branch
-        if: github.ref == 'refs/heads/main'
+      - name: Install system dependencies
         run: |
-          echo 'mitchellmanware.github.io/bookdown-main' > ./dist/CNAME
+          sudo apt-get install -y libudunits2-dev libgdal-dev
+          sudo apt-get install libmagick++-dev
 
-      - name: Define URL for staging branch
-        if: github.ref == 'refs/heads/staging-internal'
+      - name: Install R packages
         run: |
-          echo 'mitchellmanware.github.io/bookdown-staging' > ./dist/CNAME
+          R -e 'install.packages(c("bookdown", "rmarkdown", "plotly", "shiny", "tidycensus", "tidyverse", "viridis", "ggmap", "ggplot2", "maps", "dplyr", "knitr", "latticeExtra", "pals", "classInt", "sf", "udunits2", "tmap", "lubridate", "gifski", "magick", "cowplot"))'
+          R -e 'if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager"); BiocManager::install("Biobase")'
 
-      - name: Deploy to GitHub Pages
+      - name: Build site for main branch
+        run: R -e 'bookdown::render_book()'
+
+      - name: Deploy to GitHub Pages for main branch 🚀
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./dist
-          cname: ''  # Ensure this is empty to use the CNAME file
-          destination_dir: ${{ github.ref_name }}
+          publish_branch: main-pages
+          publish_dir: ./docs  # Adjust as per your project structure
+          cname: your-main-branch-custom-url.com  # Custom URL for main branch
+
+  deploy_staging:
+    if: github.ref == 'refs/heads/staging'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up R and Pandoc
+        uses: r-lib/actions/setup-pandoc@v2
+        with:
+          pandoc-version: 'latest'
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get install -y libudunits2-dev libgdal-dev
+          sudo apt-get install libmagick++-dev
+
+      - name: Install R packages
+        run: |
+          R -e 'install.packages(c("bookdown", "rmarkdown", "plotly", "shiny", "tidycensus", "tidyverse", "viridis", "ggmap", "ggplot2", "maps", "dplyr", "knitr", "latticeExtra", "pals", "classInt", "sf", "udunits2", "tmap", "lubridate", "gifski", "magick", "cowplot"))'
+          R -e 'if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager"); BiocManager::install("Biobase")'
+
+      - name: Build site for staging branch
+        run: R -e 'bookdown::render_book()'
+
+      - name: Deploy to GitHub Pages for staging branch 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: staging-pages
+          publish_dir: ./docs  # Adjust as per your project structure
+          cname: your-staging-branch-custom-url.com 
