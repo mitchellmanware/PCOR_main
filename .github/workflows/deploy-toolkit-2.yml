@@ -49,7 +49,7 @@ jobs:
         with:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: main-pages
-          publish_dir: ./docs  # Adjust as per your project structure
+          publish_dir: ./  # Adjust as per your project structure
           cname: mitchellmanware.github.io/bookdown-main
 
   deploy_staging:
@@ -87,5 +87,5 @@ jobs:
         with:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: staging-pages
-          publish_dir: ./docs  # Adjust as per your project structure
+          publish_dir: ./  # Adjust as per your project structure
           cname: mitchellmanware.github.io/bookdown-staging
