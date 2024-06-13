@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
-      - staging-public
+      - staging-internal
   pull_request:
     branches:
       - main
-      - staging-public
+      - staging-internal
 
 jobs:
   deploy:
@@ -41,7 +41,7 @@ jobs:
           echo 'mitchellmanware.github.io/bookdown-main' > ./dist/CNAME
 
       - name: Define URL for staging branch
-        if: github.ref == 'refs/heads/staging-public'
+        if: github.ref == 'refs/heads/staging-internal'
         run: |
           echo 'mitchellmanware.github.io/bookdown-staging' > ./dist/CNAME
 
