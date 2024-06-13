@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
-      - staging
+      - staging-internal
   pull_request:
     branches:
       - main
-      - staging
+      - staging-internal
   release:
     types: [published]
   workflow_dispatch:
@@ -50,10 +50,10 @@ jobs:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: main-pages
           publish_dir: ./docs  # Adjust as per your project structure
-          cname: your-main-branch-custom-url.com  # Custom URL for main branch
+          cname: mitchellmanware.github.io/bookdown-main
 
   deploy_staging:
-    if: github.ref == 'refs/heads/staging'
+    if: github.ref == 'refs/heads/staging-internal'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -88,4 +88,4 @@ jobs:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: staging-pages
           publish_dir: ./docs  # Adjust as per your project structure
-          cname: your-staging-branch-custom-url.com 
+          cname: mitchellmanware.github.io/bookdown-staging
