@@ -47,7 +47,7 @@ jobs:
           R -e 'if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager"); BiocManager::install("Biobase")'
 
       - name: Build site for staging branch
-        run: R -e 'bookdown::render_book(, "bookdown::gitbook")'
+        run: R -e 'bookdown::render_book(".", "bookdown::gitbook")'
 
       - name: Debug Repository State
         run: |
@@ -58,4 +58,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_book  # Directory where bookdown outputs the HTML files
+          publish_dir: ./docs
+          cname:
