@@ -48,15 +48,12 @@ jobs:
       - name: Build site for main branch
         run: R -e 'bookdown::render_book()'
 
-      - name: Add CNAME file for custom URL
-        run: echo "mitchellmanware.github.io/PCOR_bookdown_main" > ./docs/CNAME
-
       - name: Deploy to GitHub pages 🚀
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
           clean: false
-          branch: staging-pages
+          branch: gh-pages
           folder: docs
 
   deploy_staging:
@@ -92,9 +89,6 @@ jobs:
 
       - name: Build site for staging branch
         run: R -e 'bookdown::render_book()'
-
-      - name: Add CNAME file for custom URL
-        run: echo "mitchellmanware.github.io/PCOR_bookdown_staging" > ./docs/CNAME
 
       - name: Deploy to GitHub pages 🚀
         if: github.event_name != 'pull_request'
