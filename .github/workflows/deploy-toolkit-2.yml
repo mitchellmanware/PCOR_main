@@ -19,15 +19,12 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     
     permissions:
-      contents: read
+      contents: write
       pages: write
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          lfs: true
-          token: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Set up R and Pandoc
         uses: r-lib/actions/setup-pandoc@v2
@@ -51,6 +48,11 @@ jobs:
 
       - name: Build site for staging branch
         run: R -e 'bookdown::render_book(, "bookdown::gitbook")'
+
+      - name: Debug Repository State
+        run: |
+          git status
+          ls -la
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
