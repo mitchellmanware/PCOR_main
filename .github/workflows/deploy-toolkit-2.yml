@@ -17,6 +17,10 @@ jobs:
   deploy_main:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -55,6 +59,10 @@ jobs:
   deploy_staging:
     if: github.ref == 'refs/heads/staging-internal'
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
