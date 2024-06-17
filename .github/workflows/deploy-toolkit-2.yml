@@ -3,11 +3,11 @@ name: Deploy Toolkit 2
 on:
   push:
     branches:
-      - main
+      - [main, master]
       - staging-internal
   pull_request:
     branches:
-      - main
+      - [main, master]
       - staging-internal
   release:
     types: [published]
@@ -17,8 +17,13 @@ jobs:
   deploy_main:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    # Only restrict concurrency for non-PR jobs
+    concurrency:
+      group: deploy_main-${{ github.event_name != 'pull_request' || github.run_id }}
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     
-    permissions:
+      permissions:
       contents: write
 
     steps:
@@ -59,9 +64,15 @@ jobs:
   deploy_staging:
     if: github.ref == 'refs/heads/staging-internal'
     runs-on: ubuntu-latest
+    # Only restrict concurrency for non-PR jobs
+    concurrency:
+      group: deploy-staging-${{ github.event_name != 'pull_request' || github.run_id }}
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     
     permissions:
-      contents: write
+      contents: read
+      pages: write
     
     steps:
       - name: Checkout repository
