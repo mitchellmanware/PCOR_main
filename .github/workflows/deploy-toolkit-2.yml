@@ -48,13 +48,16 @@ jobs:
       - name: Build site for main branch
         run: R -e 'bookdown::render_book()'
 
-      - name: Deploy to GitHub Pages for main branch 🚀
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Add CNAME file for custom URL
+        run: echo "mitchellmanware.github.io/PCOR_bookdown_main" > ./docs/CNAME
+
+      - name: Deploy to GitHub pages 🚀
+        if: github.event_name != 'pull_request'
+        uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: main-pages
-          publish_dir: ./  # Adjust as per your project structure
-          cname: mitchellmanware.github.io/bookdown-main
+          clean: false
+          branch: staging-pages
+          folder: docs
 
   deploy_staging:
     if: github.ref == 'refs/heads/staging-internal'
@@ -90,10 +93,13 @@ jobs:
       - name: Build site for staging branch
         run: R -e 'bookdown::render_book()'
 
-      - name: Deploy to GitHub Pages for staging branch 🚀
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Add CNAME file for custom URL
+        run: echo "mitchellmanware.github.io/PCOR_bookdown_staging" > ./docs/CNAME
+
+      - name: Deploy to GitHub pages 🚀
+        if: github.event_name != 'pull_request'
+        uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: staging-pages
-          publish_dir: ./  # Adjust as per your project structure
-          cname: mitchellmanware.github.io/bookdown-staging
+          clean: false
+          branch: staging-pages
+          folder: docs
