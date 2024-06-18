@@ -1,20 +1,21 @@
-name: Deploy Toolkit 2
+# workflow to deploy public facing webpage
+---
+name: Deploy public
 
 on:
   push:
     branches:
-      - staging-internal
+      - main
+      - master
   release:
     types: [published]
   workflow_dispatch:
 
 jobs:
-  deploy_staging:
-    if: github.ref == 'refs/heads/staging-internal'
+  deploy_public:
     runs-on: ubuntu-latest
-    # Only restrict concurrency for non-PR jobs
     concurrency:
-      group: deploy-staging-${{ github.event_name != 'pull_request' || github.run_id }}
+      group: deploy-public-${{ github.event_name != 'pull_request' || github.run_id }}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     
@@ -59,4 +60,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
-          cname:

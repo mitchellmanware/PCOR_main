@@ -1,0 +1,17 @@
+# workflow to update external repository hosting staging webpage
+# ---
+# name: Update external repository `PCOR_staging`
+
+# on:
+#   push:
+#     branches: [staging-internal]
+
+# jobs:
+#   update_external_staging:
+#     runs-on: ubuntu-latest
+
+#     env:
+#       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+#     steps:
+

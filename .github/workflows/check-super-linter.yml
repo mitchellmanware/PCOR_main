@@ -1,5 +1,6 @@
+# # workflow to check that all content adheres to linter standards
 # ---
-# name: Check Super Linter
+# name: Check super linter
 
 # on:
 #   pull_request:

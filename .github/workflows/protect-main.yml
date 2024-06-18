@@ -1,5 +1,6 @@
+# workflow to ensure pull requests into `main` come from `staging-public`
 ---
-name: Protect Branch `main`
+name: Protect branch `main`
 
 on:
   pull_request:
