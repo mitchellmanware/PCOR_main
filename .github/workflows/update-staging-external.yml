@@ -24,7 +24,7 @@ jobs:
       - name: Clone the staging repository
         run: |
           cd ../
-          git clone https://github.com/mitchellmanware/PCOR_staging.git
+          git clone https://${{ secrets.GITHUB_PAT }}@github.com/mitchellmanware/PCOR_staging.git
           cd PCOR_staging
           git checkout main
           cd ../
