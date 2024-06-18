@@ -41,8 +41,9 @@ jobs:
           rsync -av --ignore-missing-args --exclude='.git' --exclude='.github' --delete ./ ./PCOR_staging/ || true
           cd PCOR_staging
           git add .
-          git commit -m "Sync PCOR_public staging-internal branch" || echo "No changes to commit"
-          git push https://${{ secrets.actionsPAT }}@github.com/mitchellmanware/PCOR_staging.git main
+          git status
+    #       git commit -m "Sync PCOR_public staging-internal branch" || echo "No changes to commit"
+    #       git push https://${{ secrets.actionsPAT }}@github.com/mitchellmanware/PCOR_staging.git main
 
-    env:
-      GITHUB_PAT: ${{ secrets.actionsPAT }}
+    # env:
+    #   GITHUB_PAT: ${{ secrets.actionsPAT }}
