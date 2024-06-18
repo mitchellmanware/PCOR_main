@@ -28,6 +28,14 @@ jobs:
           git checkout main
           cd ../
 
+      - name: Check directory debug
+        run: |
+          pwd
+          ls -l
+          cd ../
+          pwd
+          ls -l
+
       - name: Sync files
         run: |
           rsync -av --exclude='.git' --delete ./PCOR_public/ ./PCOR_staging/
