@@ -1,17 +1,39 @@
 # workflow to update external repository hosting staging webpage
 # ---
-# name: Update external repository `PCOR_staging`
+name: Update external repository `PCOR_staging`
 
-# on:
-#   push:
-#     branches: [staging-internal]
+on:
+  push:
+    branches: [staging-internal]
 
-# jobs:
-#   update_external_staging:
-#     runs-on: ubuntu-latest
+jobs:
+  sync:
+    runs-on: ubuntu-latest
 
-#     env:
-#       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout `PCOR_public` repository
+        uses: actions/checkout@v3
+        with:
+          ref: staging-internal
 
-#     steps:
+      - name: Set up Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Clone the staging repository
+        run: |
+          git clone https://github.com/mitchellmanware/PCOR_staging.git
+          cd staging
+          git checkout main
+
+      - name: Sync files
+        run: |
+          rsync -av --exclude='.git' --delete ./PCOR_public/ ./PCOR_staging/
+          cd staging
+          git add .
+          git commit -m "Sync PCOR_public staging-internal branch" || echo "No changes to commit"
+          git push
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
