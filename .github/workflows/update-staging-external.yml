@@ -37,9 +37,8 @@ jobs:
 
       - name: Sync files
         run: |
-          pwd
-          ls -l
-          rsync -av --ignore-missing-args --exclude='.git' --exclude='.github' --delete ./ ./PCOR_staging/ || true
+          cd ../
+          rsync -av --ignore-missing-args --exclude='.git' --exclude='.github' --delete ./PCOR_public/ ./PCOR_staging/ || true
           cd PCOR_staging
           git add .
           git status
