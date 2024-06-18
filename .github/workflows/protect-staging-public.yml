@@ -1,5 +1,6 @@
+# workflow to ensure pull requests into `staging-public` come from `staging-internal`
 ---
-name: Protect Branch `staging-public`
+name: Protect branch `staging-public`
 
 on:
   pull_request:
