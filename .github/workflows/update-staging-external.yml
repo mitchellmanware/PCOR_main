@@ -36,15 +36,13 @@ jobs:
           ls -l
 
       - name: Sync files
-        env:
-          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd ../
           rsync -av --ignore-missing-args --exclude='.git' --exclude='.github' --delete ./ ./PCOR_staging/ || true
           cd PCOR_staging
           git add .
           git commit -m "Sync PCOR_public staging-internal branch" || echo "No changes to commit"
-          git push
+          git push https://${{ secrets.GITHUB_PAT }}@github.com/mitchellmanware/PCOR_staging.git main
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
