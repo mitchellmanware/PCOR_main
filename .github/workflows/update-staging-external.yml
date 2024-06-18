@@ -30,7 +30,7 @@ jobs:
       - name: Sync files
         run: |
           rsync -av --exclude='.git' --delete ./PCOR_public/ ./PCOR_staging/
-          cd staging
+          cd PCOR_staging
           git add .
           git commit -m "Sync PCOR_public staging-internal branch" || echo "No changes to commit"
           git push
