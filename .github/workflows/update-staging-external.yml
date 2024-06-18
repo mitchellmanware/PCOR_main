@@ -31,11 +31,13 @@ jobs:
 
       - name: Check directory debug
         run: |
+          cd ../
           pwd
           ls -l
 
       - name: Sync files
         run: |
+          cd ../
           rsync -av --exclude='.git' --delete ./PCOR_public/ ./PCOR_staging/
           cd PCOR_staging
           git add .
