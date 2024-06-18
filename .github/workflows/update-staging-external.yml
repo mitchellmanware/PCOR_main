@@ -22,8 +22,6 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Clone the staging repository
-        env:
-          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd ../
           git clone https://github.com/mitchellmanware/PCOR_staging.git
