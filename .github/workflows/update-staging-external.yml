@@ -26,6 +26,7 @@ jobs:
           git clone https://github.com/mitchellmanware/PCOR_staging.git
           cd PCOR_staging
           git checkout main
+          cd ../
 
       - name: Sync files
         run: |
