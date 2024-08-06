@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6 Linkage to Census Units | The CHORDS Toolkit for Health and Geospatial Exposures Research</title>
   <meta name="description" content="The CHORDS Toolkit provides guides, tools, and example code to support climate change and human health research." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 Linkage to Census Units | The CHORDS Toolkit for Health and Geospatial Exposures Research" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="" />
 
 
-<meta name="date" content="2024-06-18" />
+<meta name="date" content="2024-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -286,24 +286,24 @@ target="blank">Published with bookdown</a></li>
 <col width="33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Data source</th>
 <th>Geographic units</th>
 <th>Example topics</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><a href="https://www.ahrq.gov/sdoh/data-analytics/sdoh-data.html">AHRQ Social Detrminants of Health Database</a></td>
 <td>County, ZIP code, tract</td>
 <td>Demographic characteristics, housing and transportation characteristics, food access, healthcare characteristics</td>
 </tr>
-<tr class="even">
+<tr>
 <td><a href="https://www.epa.gov/ejscreen">EPA Environmental Justice Screening and Mapping Tool</a></td>
 <td>Block group</td>
 <td>Air pollution, hazardous waste, flood risk, wildfire risk, environmental justice indices</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><a href="https://ephtracking.cdc.gov">CDC National Environmental Public Health Tracking Network</a></td>
 <td>State, county</td>
 <td>Heat, sunlight and ultraviolet exposure, built environment characteristics, asthma, heat-related illnesses</td>
@@ -337,7 +337,7 @@ target="blank">Published with bookdown</a></li>
 <col width="20%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Geographic unit</th>
 <th>Total units<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></th>
 <th>Geoid desciption and structure</th>
@@ -346,42 +346,42 @@ target="blank">Published with bookdown</a></li>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>State</td>
 <td>50</td>
 <td>2-digit state (S) code = SS</td>
 <td>09</td>
 <td>Connecticut (CT)</td>
 </tr>
-<tr class="even">
+<tr>
 <td>County</td>
 <td>3143</td>
 <td>5-digit code = 2-digit state (S) code + 3-digit county (C) code = SSCCC</td>
 <td>09007</td>
 <td>Middlesex County, CT</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Zip Code Tabulation Area (ZCTA)</td>
 <td>33,642</td>
 <td>5-digit ZCTA (Z) code = ZZZZZ</td>
 <td>06480</td>
 <td>ZCTA for Portland, CT</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Tract</td>
 <td>84,414</td>
 <td>11-digit code = 2-digit state (S) code + 3 digit county (C) code + 6-digit tract (T) code = SSCCCTTTTTT</td>
 <td>09007560100</td>
 <td>Tract 560100 in Middlesex County, CT</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Block group</td>
 <td>239,780</td>
 <td>12-digit code = 2-digit state (S) code + 3 digit county (C) code + 6-digit tract (T) code + 1-digit block group (G) code = SSCCCTTTTTTG</td>
 <td>090075601001</td>
 <td>Block group 1 in Tract 560100 in Middlesex County, CT</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Block</td>
 <td>8,132,968</td>
 <td>15-digit code = 2-digit state (S) code + 3 digit county (C) code + 6-digit tract (T) code + 4-digit block (B) code (which contains the block group code as its first digit) = SSCCCTTTTTTGBBB</td>

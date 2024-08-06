@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7 Linkage to Exposures | The CHORDS Toolkit for Health and Geospatial Exposures Research</title>
   <meta name="description" content="The CHORDS Toolkit provides guides, tools, and example code to support climate change and human health research." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7 Linkage to Exposures | The CHORDS Toolkit for Health and Geospatial Exposures Research" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="" />
 
 
-<meta name="date" content="2024-06-18" />
+<meta name="date" content="2024-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -291,7 +291,7 @@ target="blank">Published with bookdown</a></li>
 <col width="8%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Tool</th>
 <th>Exposure Metrics</th>
 <th>Spatial Details</th>
@@ -300,35 +300,35 @@ target="blank">Published with bookdown</a></li>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><a href="chapter-chords-geo-exposures.html#chapter-geo-exposure-caces">Air pollution (CACES model)</a></td>
 <td>Annual average outdoor concentrations of ozone, particulate matter (PM<sub>2.5</sub>, PM<sub>10</sub>), sulfur dioxide, carbon monoxide, and nitrogen dioxide air pollution</td>
 <td>Census tracts in the contiguous US</td>
 <td>Yearly during 1979-2015 (varies by pollutant)</td>
 <td>Version 1.0</td>
 </tr>
-<tr class="even">
+<tr>
 <td><a href="chapter-chords-geo-exposures.html#chapter-geo-exposure-faa">Airport proximity</a></td>
 <td>Distance to nearest, number within buffer distance, summary of distances (mean, mean of log, 25<sup>th</sup>, 50<sup>th</sup> and 75<sup>th</sup> percentiles) within buffer distance</td>
 <td>Points in the US</td>
 <td>Yearly during 1981-2020</td>
 <td>Version 1.0</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><a href="chapter-chords-geo-exposures.html#chapter-geo-exposure-roads">Major road proximity</a></td>
 <td>Distance to nearest, length in buffer distance</td>
 <td>Lines in the US</td>
 <td>Yearly during 2000-2018</td>
 <td>Version 1.0</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Air pollution (ACAG model)</td>
 <td>Annual average outdoor concentrations of particulate matter (PM<sub>2.5</sub>) and its components</td>
 <td>0.01 degree grid in North America</td>
 <td>Yearly during 2000-2018</td>
 <td>In Development</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Superfund sites</td>
 <td>Distance to nearest, number within buffer distance, summary of distances (mean, mean of log, 25<sup>th</sup>, 50<sup>th</sup> and 75<sup>th</sup> percentiles) within buffer distance</td>
 <td>Points in the US</td>
@@ -363,7 +363,7 @@ target="blank">Published with bookdown</a></li>
 <col width="17%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Air pollutant</th>
 <th>Units</th>
 <th>Exposure metric</th>
@@ -371,37 +371,37 @@ target="blank">Published with bookdown</a></li>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>carbon monoxide (CO)</td>
 <td>ppm</td>
 <td>annual average concentration</td>
 <td>1990-2015</td>
 </tr>
-<tr class="even">
+<tr>
 <td>nitrogen dioxide (NO<sub>2</sub>)</td>
 <td>ppb</td>
 <td>annual average concentration</td>
 <td>1979-2015</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>ozone (O<sub>3</sub>)</td>
 <td>ppb</td>
 <td>May through September average of daily moving 8-hour maximum average concentration</td>
 <td>1979-2015</td>
 </tr>
-<tr class="even">
+<tr>
 <td>particulate matter (PM<sub>2.5</sub>)</td>
 <td>µg m<sup>-3</sup></td>
 <td>annual average concentration</td>
 <td>1999-2015</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>particulate matter (PM<sub>10</sub>)</td>
 <td>µg m<sup>-3</sup></td>
 <td>annual average concentration</td>
 <td>1988-2015</td>
 </tr>
-<tr class="even">
+<tr>
 <td>sulfur dioxide (SO<sub>2</sub>)</td>
 <td>ppb</td>
 <td>annual average concentration</td>
@@ -489,7 +489,7 @@ of the following <strong>optional</strong> columns:</p>
 <p>The following table provides an example of the receptor point data format:</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>id</th>
 <th>latitude</th>
 <th>longitude</th>
@@ -498,21 +498,21 @@ of the following <strong>optional</strong> columns:</p>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>1011A</td>
 <td>39.00205369</td>
 <td>-77.105578716</td>
 <td>2002</td>
 <td>2011</td>
 </tr>
-<tr class="even">
+<tr>
 <td>1012C</td>
 <td>35.88480215</td>
 <td>-78.877942573</td>
 <td>2014</td>
 <td>2015</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>1013E</td>
 <td>39.43560788</td>
 <td>-77.434847823</td>
@@ -764,24 +764,24 @@ degrees format (range: -180 to 180)</li>
 <p>The following table provides an example of the receptor point data format:</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>id</th>
 <th>latitude</th>
 <th>longitude</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>1011A</td>
 <td>39.00205369</td>
 <td>-77.105578716</td>
 </tr>
-<tr class="even">
+<tr>
 <td>1012C</td>
 <td>35.88480215</td>
 <td>-78.877942573</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>1013E</td>
 <td>39.43560788</td>
 <td>-77.434847823</td>
@@ -967,21 +967,21 @@ file will be available in the folder <code>log</code> in the current R working d
 <col width="66%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Major road classification</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Highways</td>
 <td>Limited access divided highways connecting major cities.</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Primary roads</td>
 <td>Other primary major roads between and into major cities as well as primary arterial roads.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Secondary roads</td>
 <td>Other secondary roads between and into cities as well as secondary arterial roads.</td>
 </tr>
@@ -1057,24 +1057,24 @@ degrees format (range: -180 to 180)</li>
 <p>The following table provides an example of the receptor point data format:</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>id</th>
 <th>latitude</th>
 <th>longitude</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>1011A</td>
 <td>39.00205369</td>
 <td>-77.105578716</td>
 </tr>
-<tr class="even">
+<tr>
 <td>1012C</td>
 <td>35.88480215</td>
 <td>-78.877942573</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>1013E</td>
 <td>39.43560788</td>
 <td>-77.434847823</td>
